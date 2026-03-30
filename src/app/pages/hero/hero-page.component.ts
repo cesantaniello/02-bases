@@ -1,21 +1,22 @@
-import { Component } from '@angular/core';
-import { signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, computed, signal } from '@angular/core';
+import { CommonModule, UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-hero-page',
   templateUrl: './hero-page.component.html',
   styleUrls: ['./hero-page.component.css'],
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, UpperCasePipe]
 })
 export class HeroPageComponent {
   name = signal('Ironman');
   age = signal(45);
 
-  getHeroDescription(): string {
-    return `${this.name()} - ${this.age()}`;
-  }
+  heroDescription = computed(() => {
+      const description = `${this.name()} - ${this.age()}`;
+      return description;
+    }
+  );
 
   changeHero(): void {
     this.name.set('Spiderman');
