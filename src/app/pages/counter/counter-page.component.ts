@@ -1,16 +1,10 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
+import { CounterLogic } from './app.templateUrl';
 
 @Component({
-  template: `
-    <h2>Counter: {{ counter }}</h2>
-    <button (click)="increaseBy(1)">+1</button>
-  `
+  //selector: 'app-counter-page',
+  templateUrl: './counter-page.component.html',
+  styleUrls: ['./counter-page.styles.css']
 })
 
-export class CounterPageComponent {
-  counter: number = 20;
-
-  increaseBy(value: number) {
-    this.counter += value;
-  }
-}
+export class CounterPageComponent extends CounterLogic {}
