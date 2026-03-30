@@ -16,7 +16,10 @@
         <li class="list-group-item">
           <span class="badge bg-primary me-2">{{ idx + 1 }}</span>
           {{ character.name }}
-          <strong class="text-danger">({{ character.power }})</strong>
+          <strong
+            [class.text-danger]="character.power >= 9000"
+            [class.text-primary]="character.power < 9000"
+            >({{ character.power }})</strong>
         </li>
       }
     </ul>

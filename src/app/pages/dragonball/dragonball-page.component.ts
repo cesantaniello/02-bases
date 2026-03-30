@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 
 interface Character {
   id: number;
@@ -16,4 +16,10 @@ export class DragonballPageComponent {
     { id: 3, name: 'Gohan', power: 7000 },
     ]
   );
+
+  powerClasses = computed(() => {
+    return {
+      'text-danger': true,
+    }
+    });
 }
