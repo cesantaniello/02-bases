@@ -10,9 +10,6 @@ interface Character {
 })
 
 export class DragonballPageComponent {
-addCharacter() {
-throw new Error('Method not implemented.');
-}
   name = signal('Trunks');
   power = signal(8000);
 
@@ -21,12 +18,33 @@ throw new Error('Method not implemented.');
     { id: 2, name: 'Vegeta', power: 8500 },
     { id: 3, name: 'Gohan', power: 7000 },
     { id: 4, name: 'Piccolo', power: 6000 },
-    ]
+  ]
   );
-
+/*
   powerClasses = computed(() => {
     return {
       'text-danger': true,
     }
     });
 }
+*/
+
+  addCharacter() {
+    if (this.name() && this.power()) {
+      const newCharacter: Character = {
+        id: Math.max(...this.characters().map(c => c.id)) + 1,
+        name: this.name(),
+        power: this.power(),
+      };
+      this.characters.update(chars => [...chars, newCharacter]);
+      this.resetFields();
+    }
+
+  }
+
+  resetFields() {
+    this.name.set('');
+    this.power.set(0);
+  }
+}
+
