@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 interface Character {
   id: number;
@@ -6,28 +6,18 @@ interface Character {
   power: number;
 }
 @Component({
-  templateUrl: './dragonball-page.component.html',
+  templateUrl: './dragonball-super-page.component.html',
+  selector: 'dragonball-super',
 })
 
-export class DragonballPageComponent {
+export class DragonballSuperPageComponent {
   name = signal('');
   power = signal(0);
 
   characters = signal<Character[]>([
-    { id: 1, name: 'Goku', power: 9000 },/*
+    { id: 1, name: 'Goku', power: 9000 },
     { id: 2, name: 'Vegeta', power: 8500 },
-    { id: 3, name: 'Gohan', power: 7000 },
-    { id: 4, name: 'Piccolo', power: 6000 },*/
-  ]
-  );
-/*
-  powerClasses = computed(() => {
-    return {
-      'text-danger': true,
-    }
-    });
-}
-*/
+  ]);
 
   addCharacter() {
     if (this.name() && this.power()) {
@@ -39,7 +29,6 @@ export class DragonballPageComponent {
       this.characters.update(chars => [...chars, newCharacter]);
       this.resetFields();
     }
-
   }
 
   resetFields() {
