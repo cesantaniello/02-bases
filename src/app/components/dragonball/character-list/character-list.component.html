@@ -1,0 +1,18 @@
+<h3>Personajes fuertes:</h3>
+<ul class="list-group">
+  @for (character of characters(); track character.id; let idx = $index  ) {
+    @if(character.power >= 7000) {
+      <li>
+        <li class="list-group-item">
+          <span class="badge bg-primary me-2">{{ idx + 1 }}</span>
+          {{ character.name }}
+          <strong
+            [class.text-danger]="character.power >= 9000"
+            [class.text-primary]="character.power < 9000"
+            >({{ character.power }})</strong>
+        </li>
+  } @else {
+    <li><strong>Debajo de aquí sólo hay insectos</strong></li>
+  }
+}
+</ul>
