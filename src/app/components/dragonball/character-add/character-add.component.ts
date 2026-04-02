@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, output, signal } from '@angular/core';
 import { Character } from '../../../interfaces/character.interface';
 
 @Component({
@@ -9,6 +9,8 @@ import { Character } from '../../../interfaces/character.interface';
 export class CharacterAddComponent {
   name = signal('');
   power = signal(0);
+
+  newCharacter = output<Character>();
   characters: any;
 
   addCharacter() {
@@ -18,7 +20,8 @@ export class CharacterAddComponent {
         name: this.name(),
         power: this.power(),
       };
-      this.characters.update((chars: Character[]) => [...chars, newCharacter]);
+      //this.characters.update((chars: Character[]) => [...chars, newCharacter]);
+      this.newCharacter.emit(newCharacter);
       this.resetFields();
     }
   }

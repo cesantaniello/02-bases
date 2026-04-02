@@ -18,16 +18,8 @@ export class DragonballSuperPageComponent {
     { id: 2, name: 'Vegeta', power: 8500 },
   ]);
 
-  addCharacter() {
-    if (this.name() && this.power()) {
-      const newCharacter: Character = {
-        id: Math.max(...this.characters().map(c => c.id)) + 1,
-        name: this.name(),
-        power: this.power(),
-      };
-      this.characters.update(chars => [...chars, newCharacter]);
-      this.resetFields();
-    }
+  addCharacter(character: Character) {
+    this.characters.update(chars => [...chars, { ...character, id: Math.max(...chars.map(c => c.id)) + 1 }]);
   }
 
   resetFields() {
